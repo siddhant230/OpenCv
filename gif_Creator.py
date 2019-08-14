@@ -1,7 +1,21 @@
+import cv2
 import imageio
 import os
 
-clip=os.path.abspath('xyz.avi')
+cap=cv2.VideoCapture(0)
+
+fourcc = cv2.VideoWriter_fourcc(*'XVID')
+out = cv2.VideoWriter('video.avi', fourcc, 20.0, (640, 480))
+
+while True:
+    if cv2.waitKey(1)==ord('q'):
+        break
+    ret,frame=cap.read()
+    hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
+    out.write(frame)
+    cv2.imshow('original',frame)
+
+clip=os.path.abspath('video.avi')
 
 def converter(inp_path,target_format):
     val=''
