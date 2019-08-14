@@ -86,7 +86,7 @@ while True:
             s = smtplib.SMTP('smtp.gmail.com', 587)
             s.starttls()
             s.login("rsiddhant73@gmail.com", "#pokemon911")
-            message = "Your camera number webcam has been covered for more than 5 seconds"
+            message = "Your camera number 1 has been covered for more than 5 seconds"
             s.sendmail("rsiddhant73@gmail.com", "sidlovesml@gmail.com", message)
             s.quit()
             print('sent email')
@@ -107,7 +107,7 @@ while True:
             s = smtplib.SMTP('smtp.gmail.com', 587)
             s.starttls()
             s.login("rsiddhant73@gmail.com", "#pokemon911")
-            message = "Your camera number friend jhatha has been covered for more than 5 seconds"
+            message = "Your camera number 2 has been covered for more than 5 seconds"
             s.sendmail("rsiddhant73@gmail.com", "sidlovesml@gmail.com", message)
             s.quit()
             print('sent email')
