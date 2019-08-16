@@ -15,14 +15,6 @@ frame_allowed=48
 count=0
 alarm_state=False
 
-def shape_to_np(shape, dtype="int"):
-    coords = np.zeros((68, 2), dtype=dtype)
-    print(shape.part)
-    for i in range(0, 68):
-        print(i)
-        coords[i] = (shape.part(i).x, shape.part(i).y)
-    return coords
-
 def eye_aspect_ratio(eye):
     #vertical landmark
     a=dist.euclidean(eye[1],eye[5])
