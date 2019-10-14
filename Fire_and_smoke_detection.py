@@ -72,7 +72,7 @@ from keras.layers import Conv2D,Dense,Flatten,MaxPool2D
 
 model=Sequential()
 
-###think about this fuc*ing shit   ####found something relevant....train acc=>82%-85% vaidation acc=>85% on 8 iterations
+####found something relevant....train acc=>82%-85% vaidation acc=>85% on 8 iterations
 model.add(Conv2D(16,input_shape=(width,height,3),kernel_size=1,activation='relu'))
 model.add(MaxPool2D(pool_size=(2,2),strides=1))
 
