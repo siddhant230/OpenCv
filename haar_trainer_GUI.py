@@ -152,6 +152,25 @@ def target_caller():
 
 def exiter():
     sys.exit()
+    
+def copyit(h):
+    global val
+    r="import cv2\nfrom keras.models import model_from_json\n\nmodel=model_from_json(open('your_file.json','r').read())\nmodel.load_weights('weight.h5')\n#for prediction\nprediction=model.predict(image)"
+    win32clipboard.OpenClipboard()
+    win32clipboard.EmptyClipboard()
+    win32clipboard.SetClipboardText(r,win32clipboard.CF_TEXT)
+    win32clipboard.CloseClipboard()
+    val=messagebox.showinfo('INFO','TEXT COPIED!')
+    if val=='ok':
+        h.destroy()
+
+def helper():
+    global val
+    r="import cv2\nfrom keras.models import model_from_json\n\nmodel=model_from_json(open('your_file.json','r').read())\nmodel.load_weights('weight.h5')\n#for prediction\nprediction=model.predict(image)"
+    h=tk.Tk()
+    h.geometry("600x400")
+    Label(h,text=r,bg="#ffccbb",fg='black',anchor='n',justify=LEFT,width=50,height=20,font=("Times",15,"bold")).pack()
+    Button(h,text="COPY",command=partial(copyit,h)).place(relx=0.87,rely=0.04)
 
 title=tk.Label(text='HAAR-CASCADE TRAINER',font={'verdana','100','italic bold'},bg='red',fg='white',bd=8,width=70)
 title.pack(fill=Y,side=TOP)
@@ -187,6 +206,11 @@ data.place(relx=0.495,rely=0.37,bordermode=OUTSIDE)
 entry_iter=Entry(font=("Times"),width=6)
 entry_iter.place(relx=0.579,rely=0.37)
 Label(text='*(atleast 10)',bg='#ffccbb',fg='red').place(relx=0.63,rely=0.37)
+
+##how to load trained model for prdiction
+Label(text="If you need help regarding loading the model\nPRESS on button below",font=("Times", 12, "bold"),height=7,anchor='n').place(relx=0.515,rely=0.52)
+buthelp=tk.Button(text='MODEL LOADING?',width=16,bd=5, height=1,bg="white",font=("verdana",11,"bold"),command=helper)
+buthelp.place(relx=0.55,rely=0.625)
 
 ##train size###
 data=Label(text="TRAIN_SIZE  : ",bg='#ffccbb',fg='black',font=("Times", 12, "bold"),anchor='w')
