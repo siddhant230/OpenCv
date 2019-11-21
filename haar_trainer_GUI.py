@@ -4,6 +4,7 @@ from tkinter import *
 from tkinter import messagebox
 import sys
 import cv2
+from functools import partial
 import time
 import random
 import numpy as np
