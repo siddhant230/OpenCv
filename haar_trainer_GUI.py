@@ -3,7 +3,7 @@ import os
 from tkinter import *
 from tkinter import messagebox
 import sys
-import cv2
+import cv2,win32clipboard
 from functools import partial
 import time
 import random
