@@ -4,12 +4,12 @@ from tkinter import *
 from tkinter import messagebox
 import sys
 import cv2,win32clipboard
-from functools import partial
 import time
 import random
 import numpy as np
 from tkinter.filedialog import askdirectory
 from tqdm import tqdm
+from functools import partial
 
 canvas=tk.Tk()
 canvas.title('HAAR TRAINER')
@@ -17,7 +17,7 @@ canvas.geometry("2000x1000")
 canvas.configure(background='#ffccbb')
 
 def trainer(data,target,image_size=64,iterations=10,train_size=80):
-    canvas.destroy()
+    canvas.wm_state('iconic')
     data_path=data
     target_path=target
     print('CHOSEN PATH FOR POSITIVE SAMPLES : {}'.format(data_path))
@@ -153,7 +153,7 @@ def target_caller():
 
 def exiter():
     sys.exit()
-    
+
 def copyit(h):
     global val
     r="import cv2\nfrom keras.models import model_from_json\n\nmodel=model_from_json(open('your_file.json','r').read())\nmodel.load_weights('weight.h5')\n#for prediction\nprediction=model.predict(image)"
