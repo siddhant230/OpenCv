@@ -8,8 +8,8 @@ import cv2
 def sound_alarm(path):
     playsound.playsound(path)
 
-alarm_path='/home/parmeet/Documents/Fairy-tail-theme 1.mp3'
-det_path='/home/parmeet/Desktop/Siddhant Rai/impi/drowsiness-detection/shape_predictor_68_face_landmarks.dat'
+alarm_path='theme_1.mp3'
+det_path='shape_predictor_68_face_landmarks.dat'
 eye_thresh=0.3
 frame_allowed=48
 count=0
