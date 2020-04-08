@@ -1,0 +1,115 @@
+<html>
+ <head>
+  <title>VIDEO SHORTNER</title>
+     <style>
+     #full{
+	  		font-size:20px;
+		  	border-radius:9px;
+		   background-color: #00ffaa;
+		   color : #9e9e9e;
+		   width : 85px;
+		   height : 55px;
+	  		}
+
+         .card{
+         width:500px;
+         height : 400px;
+          top: 80%;
+          left: 50%;
+           border-radius:9px;
+          box-shadow:0 4px 8px 0 rgba(0,0,0,0.2);
+         background-color: #9e9e9e;
+         }
+         .card:hover{
+         border-radius:9px;
+         box-shadow:0 8px 16px 0 rgba(0,0,0,0.2);
+         }
+         .container{
+         padding : 2px 16px;
+         }
+
+         h1{
+         letter-spacing:5px;
+         border-radius:9px;
+         text-shadow:2px 2px 5px grey;
+         color : #00ffaa;
+         }
+
+        #button:hover{
+        letter-spacing:5px;
+        font-size:20px;
+         border-radius:9px;
+         background-color:#9e9e9e;
+         color : #00ffaa;
+         width : 125px;
+         height : 45px;
+        }
+
+      .wrapper {
+        text-align: center;
+        }
+
+     #myfile{
+        border-radius:9px;
+         font-size:16pt;
+         width : 255px;
+         height : 35px;
+         position: absolute;
+         top : 50%;
+         left : 43%;
+     }
+    #button{
+        font-size:20px;
+        letter-spacing:5px;
+        border-radius:9px;
+        background-color: #00ffaa;
+        color : #9e9e9e;
+         width : 125px;
+         height : 45px;
+         text-align  : center;
+        }
+
+    p{
+         font-size : 22px;
+        color : #000000;
+         width : 125px;
+         height : 45px;
+         text-align  : center;
+    }
+
+     </style>
+
+     <script>
+
+         function submitter(){
+            document.getElementById("p_block").innerHTML="please wait..processing the file";
+            alert("please wait...processing your file");
+            document.getElementById("button").click();
+         }
+
+         function downloader()
+         {
+            document.getElementById("full").href="{{url_for('download')}}";
+         }
+
+     </script>
+ </head>
+ <body bgcolor="#00ccaa">
+ <h1 align="center" style="background-color: #9e9e9e;">Shorten Video</h1>
+ <center>
+
+  <div class="card">
+     <div class="container">
+           <form method="post" enctype="multipart/form-data" onsubmit="submitter(event)">
+               <div class="wrapper">
+               <input type="file" id="myfile" name="files" required><br><br>
+               </div>
+               <input type="submit" name="convert" value="convert" id="button">
+           </form>
+         <a  href="/" onclick="downloader(event)" id="full">Download</a>
+         <p id="p_block">{{content}}</p>
+     </div>
+  </div>
+ </center>
+ </body>
+</html>
