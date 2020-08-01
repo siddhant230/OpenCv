@@ -67,11 +67,13 @@ def threshold(warp):
 
 
 def apply_transform(gray):
-    filter = cv2.GaussianBlur(gray, (5, 5), 0)
-    ret, thresh = cv2.threshold(filter, 190, 255, 0)
+    filter = cv2.GaussianBlur(gray, (3, 3), 0)
+    ret, thresh = cv2.threshold(filter, 170, 255, 0)
     #cv2.imwrite('test_images/thresh.png', thresh)
-    cnts = cv2.findContours(thresh.copy(), cv2.RETR_LIST, cv2.CHAIN_APPROX_SIMPLE)
+
+    cnts = cv2.findContours(thresh.copy(), cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
     cnts = imutils.grab_contours(cnts)
+    # cv2.imwrite('test_images/check.png', gray)
 
     cnts = sorted(cnts, key=cv2.contourArea, reverse=True)
     scr = []
@@ -107,10 +109,19 @@ def sharpen(img):
     return opt
 
 
+def adjust_gamma(image, gamma=1.5):
+    invGamma = 1.0 / gamma
+    table = np.array([((i / 255.0) ** invGamma) * 255
+                      for i in np.arange(0, 256)]).astype("uint8")
+
+    return cv2.LUT(image, table)
+
+
 if __name__ == "__main__":
     img = cv2.imread(img_path)
     org = img.copy()
     orig = img.copy()
+    img = adjust_gamma(img)
     gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 
     opt = apply_transform(gray)
