@@ -3,7 +3,7 @@ able to localize document or id in real time video
 
 
 image based:
-upload your image and output will be saved:
+upload your image and localize document output will be saved:
 
 command for image_based : 
 
