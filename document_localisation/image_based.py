@@ -68,9 +68,7 @@ def threshold(warp):
 
 def apply_transform(gray):
     filter = cv2.GaussianBlur(gray, (5, 5), 0)
-    ret, thresh = cv2.threshold(filter, 50, 255, 0)
-
-    canny = cv2.Canny(thresh, 100, 255)
+    ret, thresh = cv2.threshold(filter, 170, 255, 0)
 
     cnts = cv2.findContours(thresh.copy(), cv2.RETR_LIST, cv2.CHAIN_APPROX_SIMPLE)
     cnts = imutils.grab_contours(cnts)
