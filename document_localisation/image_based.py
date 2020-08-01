@@ -68,8 +68,8 @@ def threshold(warp):
 
 def apply_transform(gray):
     filter = cv2.GaussianBlur(gray, (5, 5), 0)
-    ret, thresh = cv2.threshold(filter, 170, 255, 0)
-
+    ret, thresh = cv2.threshold(filter, 190, 255, 0)
+    #cv2.imwrite('test_images/thresh.png', thresh)
     cnts = cv2.findContours(thresh.copy(), cv2.RETR_LIST, cv2.CHAIN_APPROX_SIMPLE)
     cnts = imutils.grab_contours(cnts)
 
@@ -84,7 +84,6 @@ def apply_transform(gray):
                 scr = approx
                 break
 
-
         if len(scr) > 0:
             cv2.drawContours(img, [scr], -1, (0, 255, 0), 2)
 
@@ -92,12 +91,20 @@ def apply_transform(gray):
             return warp
     return None
 
+
 def threshold(warp):
     warp = cv2.cvtColor(warp, cv2.COLOR_BGR2GRAY)
     T = threshold_local(warp, offset=10, method='gaussian', block_size=11)
     val = (warp > T).astype('uint8') * 255
 
     return val
+
+
+def sharpen(img):
+    kernel = np.array([[-1, -1, -1], [-1, 9, -1], [-1, -1, -1]])
+    opt = cv2.filter2D(img, -1, kernel)
+
+    return opt
 
 
 if __name__ == "__main__":
@@ -112,8 +119,14 @@ if __name__ == "__main__":
         opt = cv2.rotate(opt, cv2.ROTATE_90_COUNTERCLOCKWISE)
 
     if opt is not None:
-        save_name = img_path.split('.')[0] + '_output.png'
-        cv2.imwrite(save_name, opt)
+
+        otsu = threshold(opt)
+        sharp = sharpen(opt)
+
+        save_name = img_path.split('.')[0]
+        cv2.imwrite(save_name + '_output.png', opt)
+        cv2.imwrite(save_name + '_otsu.png', otsu)
+        cv2.imwrite(save_name + '_sharp.png', sharp)
 
     else:
         print('Nothing detected...')
